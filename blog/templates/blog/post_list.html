@@ -16,7 +16,22 @@
             <div>
                 <p>published: 14.06.2014, 12:14</p>
                 <h2><a href="">My second post</a></h2>
-                <p>Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut f.</p>
+                <p>
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+
+url="http://movie.naver.com/movie/sdb/rank/rmovie.nhn"
+soup = BeautifulSoup(urlopen(url).read())
+pkg_list=soup.findAll("div", "tit3")
+
+count = 1
+for i in pkg_list:
+	title = i.findAll('a')
+	print (count, "위: ", str(title)[str(title).find('title="')+7:str(title).find('">')])
+	count=count+1
+
+</p>
+
             </div>
         </body>
     </html>
